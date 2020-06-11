@@ -1,10 +1,11 @@
+from __future__ import print_function
+
 import time
 from mojo.events import addObserver
 
-
 class autoSaviour(object):
 	def __init__ (self, interval=600):
-		print 'AutoSaviour will save all your open fonts every %i seconds automatically.' % interval
+		print('AutoSaviour will save all your open fonts every %i seconds automatically.' % interval)
 		addObserver(self, "_checkTime", "currentGlyphChanged")
 		self.timeLastSave = time.time()
 		self.interval = interval
@@ -13,7 +14,7 @@ class autoSaviour(object):
 		for font in AllFonts():
 			fileName = font.path.replace('.ufo', '-AutoSaved.ufo')
 			copyfont = font.copy()
-			print 'Autosaving font...', font
+			print('Autosaving font...', font)
 			copyfont.save(fileName)
 
 	def _checkTime (self, info):
